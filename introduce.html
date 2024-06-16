@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu and Background</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General reset and body styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+/* Navigation bar styles */
+.nav {
+    background: rgba(51, 51, 51, 0.5);
+    display: flex;
+    height: 60px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    position: relative;
+}
+
+#logo {
+    color: rgb(224, 240, 238);
+    font-size: 24px;
+    text-decoration: none;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex: 1;
+    margin-right: 2em;
+}
+
+.menu li {
+    list-style: none;
+    position: relative;
+    margin-left: 20px;
+}
+
+.menu li a {
+    display: block;
+    padding: 0 20px;
+    height: 60px;
+    line-height: 60px;
+    color: white;
+    border: 2px solid transparent;
+    transition: border 0.3s, background-color 0.3s, color 0.3s;
+    text-align: center;
+    text-decoration: none;
+}
+
+.menu li a:hover {
+    border: 2px solid #ff69b4;
+    background-color: #ff69b4;
+    color: #333;
+}
+
+.menu_down {
+    background: rgba(85, 85, 85, 0.5);
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 200px;
+    display: none;
+    flex-direction: column;
+    padding: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 20;
+}
+
+.menu_down li {
+    text-align: center;
+    padding: 10px 0;
+}
+
+.menu_down li a {
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.menu_down li a:hover {
+    background-color: rgba(255, 105, 180, 0.5);
+    color: #333;
+}
+
+.menu .menu_link:hover .menu_down {
+    display: flex;
+}
+
+/* Video background section */
+.video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    z-index: 0;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #333;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    color: white;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #ff69b4;
+    text-decoration: none;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.btn {
+    background-color: #ff69b4;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #ff85c0;
+}
+
+.switch-link {
+    color: #ff69b4;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.switch-link:hover {
+    color: #ff85c0;
+}
+
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="#" id="logo"><strong>25/5_MΞMORY<sup>©</sup></strong></a>
+        <ul class="menu">
+            <li><a href="#" id="homeLink" class="nav-link">HOME</a></li>
+            <li><a href="#" class="nav-link">INTRODUCE</a></li>
+            <li class="menu_link">
+                <a href="#" class="nav-link">LOVE</a>
+                <ul class="menu_down">
+                    <li><a href="#">Part 1</a></li>
+                    <li><a href="#">Part 2</a></li>
+                    <li><a href="#">Part 3</a></li>
+                </ul>
+            </li>
+            <li><a href="#" class="nav-link">GAMES</a></li>
+            <li><a href="#" id="loginSignUpBtn"><font color="#e01d9f">Login | Sign up</font></a></li>
+        </ul>
+    </div>
+    <!-- Video background section -->
+    <div class="video-container">
+        <video autoplay muted loop playsinline class="video">
+            <source src="video.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+    </div>
+    <!-- Modal section -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="signUpForm">
+                <h2>Sign Up</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="newUsername">Username:</label>
+                        <input type="text" id="newUsername" name="newUsername">
+                    </div>
+                    <div class="form-group">
+                        <label for="newPassword">Password:</label>
+                        <input type="password" id="newPassword" name="newPassword">
+                    </div>
+                    <button type="submit" class="btn">Sign Up</button>
+                </form>
+                <p>If you already have an account. <span class="switch-link" id="showLoginForm">LOG IN</span></p>
+            </div>
+            <div id="loginForm" style="display: none;">
+                <h2>Login</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password">
+                    </div>
+                    <button type="submit" class="btn">Login</button>
+                </form>
+                <p>Don't have an account? <span class="switch-link" id="showSignUpForm">Sign Up</span></p>
+            </div>
+        </div>
+    </div>
+    <!-- Script for modal behavior -->
+    <script>
+        const modal = document.getElementById("myModal");
+        const btn = document.getElementById("loginSignUpBtn");
+        const span = document.getElementsByClassName("close")[0];
+        
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+        
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+        
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        const homeLink = document.getElementById('homeLink');
+
+    homeLink.addEventListener('click', function(event) {
+        event.preventDefault(); // Ngăn chặn hành vi mặc định của thẻ <a>
+        window.location.href = 'https://jasonphu16098.github.io/phutechno/'; // Chuyển hướng đến trang YouTube
+    });
+    </script>
+    
+</body>
+</html>
